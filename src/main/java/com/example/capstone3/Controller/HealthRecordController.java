@@ -6,6 +6,7 @@ import com.example.capstone3.DTO_out.HealthRiskResponseDTO;
 import com.example.capstone3.DTO_out.MealValidationResponseDTO;
 import com.example.capstone3.Model.HealthRecord;
 import com.example.capstone3.Service.HealthRecordService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -32,7 +33,7 @@ public class HealthRecordController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<?> addHealthRecord(@RequestBody HealthRecordDTO healthRecordDTO) {
+    public ResponseEntity<?> addHealthRecord(@RequestBody @Valid HealthRecordDTO healthRecordDTO) {
         healthRecordService.addHealthRecord(healthRecordDTO);
         return ResponseEntity.status(200).body("Health record added successfully");
     }

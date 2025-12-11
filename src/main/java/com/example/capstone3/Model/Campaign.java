@@ -44,8 +44,8 @@ public class Campaign {
     private String supervisorPhone;
 
     //هنا عدلت عشان وقت انشاء الحمله تكون null
-    @Column(nullable = true)
-    private Boolean registrationOpen;   // true = accepting pilgrims, false = closed
+    @Column(nullable = false)
+    private Boolean registrationOpen = true;   // true = accepting pilgrims, false = closed
 
     @NotNull
     @Column(nullable = false)

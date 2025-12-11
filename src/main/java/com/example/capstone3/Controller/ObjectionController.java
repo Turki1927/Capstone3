@@ -2,6 +2,7 @@ package com.example.capstone3.Controller;
 
 import com.example.capstone3.Api.ApiResponse;
 import com.example.capstone3.DTO_in.AddObjectionDTO;
+import com.example.capstone3.DTO_out.ObjectionReportDTO;
 import com.example.capstone3.Model.Objection;
 import com.example.capstone3.Service.ObjectionService;
 import jakarta.validation.Valid;
@@ -59,4 +60,18 @@ public class ObjectionController {
         objectionService.rejectObjection(objectionId, objection.getResponse());
         return ResponseEntity.status(200).body(new ApiResponse("Objection rejected successfully"));
     }
+
+
+
+
+    @GetMapping("/approval-report")
+    public ResponseEntity getApprovalReport() {
+
+        ObjectionReportDTO report = objectionService.getObjectionApprovalReport();
+
+        return ResponseEntity.status(200).body(report);
+    }
+
+
+
 }

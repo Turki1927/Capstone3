@@ -45,7 +45,7 @@ public class AdminController {
     @PutMapping("/activate-kitchen/{id}")
     public ResponseEntity<?> activateKitchen(@PathVariable Integer id) {
         adminService.activateKitchen(id);
-        return ResponseEntity.status(200).body("Kitchen activated successfully");
+        return ResponseEntity.status(200).body(new ApiResponse("Kitchen activated successfully"));
     }
 
     //  Suspend kitchen 2
@@ -60,7 +60,7 @@ public class AdminController {
     @PutMapping("/assign-kitchens/{inspectorId}")
     public ResponseEntity<?> assignKitchensToInspector(@PathVariable Integer inspectorId, @RequestBody Set<Integer> kitchenIds) {
         adminService.assignKitchensToInspector(inspectorId, kitchenIds);
-        return ResponseEntity.status(200).body("Kitchens assigned to inspector successfully");
+        return ResponseEntity.status(200).body(new ApiResponse("Kitchens assigned to inspector successfully"));
     }
 
 

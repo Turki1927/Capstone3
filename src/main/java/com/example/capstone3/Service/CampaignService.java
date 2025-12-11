@@ -27,6 +27,7 @@ public class CampaignService {
     }
 
     public void addCampaign(Campaign campaign) {
+        campaign.setRegistrationOpen(true);
         campaignRepository.save(campaign);
     }
 

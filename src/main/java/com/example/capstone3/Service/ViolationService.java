@@ -21,7 +21,7 @@ public class ViolationService {
     private final ViolationRepository violationRepository;
     private final KitchenRepository kitchenRepository;
     private final InspectorRepository inspectorRepository;
-
+    private final WhatsAppService whatsAppService;
 
     public List<Violation> getAll() {
         return violationRepository.findAll();
@@ -39,6 +39,8 @@ public class ViolationService {
         violation.setKitchen(kitchen);
         violation.setStatus("open");
         violationRepository.save(violation);
+        sendViolationToKitchenWhatsApp(violation.getId());
+
     }
 
     public void updateViolation(Integer id, Violation violation) {
@@ -89,5 +91,45 @@ public class ViolationService {
         violation.setStatus("open");
         violationRepository.save(violation);
     }
+
+
+    public void sendViolationToKitchenWhatsApp(Integer violationId) {
+
+        Violation violation = violationRepository.findViolationById(violationId);
+
+        if (violation == null) {
+            throw new ApiException("Violation not found");
+        }
+
+        Kitchen kitchen = violation.getKitchen();
+        Inspector inspector = violation.getInspector();
+
+        String to = "966544593236";
+
+        StringBuilder msg = new StringBuilder();
+        msg.append("⚠️ *تم تسجيل بلاغ على مطبخكم*\n\n");
+
+        msg.append("🏠 *اسم المطبخ:* ").append(kitchen.getName()).append("\n");
+        msg.append("👤 *اسم المالك:* ").append(kitchen.getOwnerName()).append("\n\n");
+
+        msg.append("📌 *تفاصيل البلاغ:*\n");
+        msg.append("🆔 رقم البلاغ: ").append(violation.getId()).append("\n");
+        msg.append("📅 تاريخ البلاغ: ").append(violation.getDate()).append("\n");
+        msg.append("⚠️ نوع المخالفة: ").append(violation.getType()).append("\n");
+        msg.append("⚠️ درجة الخطورة: ").append(violation.getSeverity()).append("\n");
+        msg.append("📝 الملاحظات: ").append(violation.getNotes()).append("\n\n");
+
+        msg.append("👮‍♂️ *المراقب:* ").append(inspector.getName()).append("\n\n");
+
+        msg.append("يرجى مراجعة البلاغ واتخاذ الإجراء اللازم.\n");
+        msg.append("— إدارة نظام تغذية الحجاج");
+
+        whatsAppService.sendMessage(to, msg.toString());
+    }
+
+
+
+
+
 
 }
