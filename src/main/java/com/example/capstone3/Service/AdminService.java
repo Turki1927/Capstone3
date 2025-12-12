@@ -2,9 +2,11 @@ package com.example.capstone3.Service;
 
 import com.example.capstone3.Api.ApiException;
 import com.example.capstone3.Model.Admin;
+import com.example.capstone3.Model.Campaign;
 import com.example.capstone3.Model.Inspector;
 import com.example.capstone3.Model.Kitchen;
 import com.example.capstone3.Repository.AdminRepository;
+import com.example.capstone3.Repository.CampaignRepository;
 import com.example.capstone3.Repository.InspectorRepository;
 import com.example.capstone3.Repository.KitchenRepository;
 import lombok.RequiredArgsConstructor;
@@ -23,6 +25,8 @@ public class AdminService {
     private final KitchenRepository kitchenRepository;
     private final InspectorRepository inspectorRepository;
     private final  WhatsAppService whatsAppService;
+    private final CampaignRepository campaignRepository;
+
 
     public List<Admin> getAll(){
         return adminRepository.findAll();
@@ -67,7 +71,6 @@ public class AdminService {
 
     }
 
-// 1 by turki
 public void activateKitchen(Integer id){
 
     Kitchen kitchen = kitchenRepository.findKitchenById(id);
@@ -119,7 +122,6 @@ public void activateKitchen(Integer id){
 
 
 
-    //2 by turki
     public void suspendKitchen(Integer id){
         Kitchen kitchen = kitchenRepository.findKitchenById(id);
 
@@ -132,7 +134,6 @@ public void activateKitchen(Integer id){
     }
 
 
-//3 by turki
 public void assignKitchensToInspector(Integer inspectorId, Set<Integer> kitchenIds) {
     Inspector inspector = inspectorRepository.findInspectorById(inspectorId);
     if (inspector == null) {
@@ -167,6 +168,10 @@ public void assignKitchensToInspector(Integer inspectorId, Set<Integer> kitchenI
 
         kitchen.setStatus("Reject");
         kitchenRepository.save(kitchen);
+    }
+
+    public List<String> getAllChatIds() {
+        return adminRepository.getAllChatIds();
     }
 
 

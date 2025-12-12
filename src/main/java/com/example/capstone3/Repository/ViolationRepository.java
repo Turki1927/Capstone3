@@ -13,6 +13,7 @@ public interface ViolationRepository extends JpaRepository<Violation,Integer> {
     Violation findViolationById(Integer id);
 
     List<Violation> findAllByKitchen (Kitchen kitchen);
+    List<Violation> findViolationsByInspectorId(Integer inspectorId);
 
     int countAllByKitchen(Kitchen kitchen);
 

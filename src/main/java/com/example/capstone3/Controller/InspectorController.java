@@ -39,12 +39,10 @@ public class InspectorController {
     }
 
 
-//9
     @GetMapping("/violations/{inspectorId}")
     public ResponseEntity<?> getViolationsByInspector(@PathVariable Integer inspectorId) {
         return ResponseEntity.status(200).body(inspectorService.getViolationsByInspector(inspectorId));
     }
-//10
     @GetMapping("/violations/open/{inspectorId}")
     public ResponseEntity<?> getOpenViolationsByInspector(@PathVariable Integer inspectorId) {
         return ResponseEntity.status(200).body(inspectorService.getOpenViolationsByInspector(inspectorId));

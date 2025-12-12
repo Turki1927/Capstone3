@@ -42,14 +42,12 @@ public class ViolationController {
         return ResponseEntity.status(200).body(new ApiResponse("Violation deleted successfully"));
     }
 
-//18
     @PutMapping("/close/{violationId}")
     public ResponseEntity<?> closeViolation(@PathVariable Integer violationId) {
         violationService.closeViolation(violationId);
         return ResponseEntity.status(200).body(new ApiResponse("Violation closed successfully"));
     }
 
-//19
     @PutMapping("/reopen/{violationId}")
     public ResponseEntity<?> reopenViolation(@PathVariable Integer violationId) {
         violationService.reopenViolation(violationId);

@@ -30,7 +30,6 @@ public class ObjectionService {
         return objectionRepository.findAll();
     }
 
-    //7 by turki //تعديل
     public void addObjection(Integer violationId, Integer kitchenId, AddObjectionDTO addObjectionDTO) {
 
         Violation violation = violationRepository.findViolationById(violationId);
@@ -107,7 +106,6 @@ public class ObjectionService {
     }
 
 
-    //8 by turki
     public ObjectionReportDTO getObjectionApprovalReport() {
 
         long total = objectionRepository.getTotalObjections();

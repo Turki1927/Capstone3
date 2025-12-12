@@ -42,23 +42,34 @@ public class CampaignController {
         return ResponseEntity.status(200).body(new ApiResponse("Campaign deleted successfully"));
     }
 
-    // 4) assign campaign to kitchen
     @PutMapping("/assign-to-kitchen/{campaignId}/{kitchenId}")
     public ResponseEntity<?> assignCampaignToKitchen(@PathVariable Integer campaignId, @PathVariable Integer kitchenId) {
         campaignService.assignCampaignToKitchen(campaignId, kitchenId);
         return ResponseEntity.status(200).body(new ApiResponse("Campaign assigned to kitchen successfully"));
     }
 
-    // 5) get all pilgrims in campaign
     @GetMapping("/pilgrims/{campaignId}")
     public ResponseEntity<?> getPilgrimsInCampaign(@PathVariable Integer campaignId) {
         return ResponseEntity.status(200).body(campaignService.getPilgrimsInCampaign(campaignId));
     }
 
-    // 6) add pilgrim to campaign
     @PutMapping("/add-pilgrim/{pilgrimId}/{campaignId}")
     public ResponseEntity<?> addPilgrimToCampaign(@PathVariable Integer pilgrimId, @PathVariable Integer campaignId) {
         campaignService.addPilgrimToCampaign(pilgrimId, campaignId);
         return ResponseEntity.status(200).body(new ApiResponse("Pilgrim added to campaign successfully"));
     }
+
+
+
+    @PutMapping("/close-registration/{campaignId}")
+    public ResponseEntity<?> closeCampaignRegistration(@PathVariable Integer campaignId) {
+
+        campaignService.closeCampaignRegistration(campaignId);
+
+        return ResponseEntity.status(200).body(new ApiResponse("Campaign registration closed successfully"));
+    }
+
+
+
+
 }

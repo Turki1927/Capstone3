@@ -41,7 +41,6 @@ public class KitchenController {
         return ResponseEntity.status(200).body(new ApiResponse("Kitchen deleted successfully"));
     }
 
-//11
     @GetMapping("/get-active-kitchen")
     public ResponseEntity<?> getActiveKitchen () {
         return ResponseEntity.status(200).body(kitchenService.getActiveKitchen());

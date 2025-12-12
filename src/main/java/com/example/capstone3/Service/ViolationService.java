@@ -41,6 +41,13 @@ public class ViolationService {
         violationRepository.save(violation);
         sendViolationToKitchenWhatsApp(violation.getId());
 
+
+        int violationsCount = violationRepository.countAllByKitchen(kitchen);
+        if (violationsCount > 3 ) {
+            kitchen.setStatus("Suspended");
+            kitchenRepository.save(kitchen);
+        }
+
     }
 
     public void updateViolation(Integer id, Violation violation) {

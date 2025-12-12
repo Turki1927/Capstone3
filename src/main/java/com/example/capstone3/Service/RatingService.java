@@ -28,7 +28,6 @@ public class RatingService {
         return ratingRepository.findAll();
     }
 
-//6 by turki
     public void addRating(Integer campaignId, Integer kitchenId, Rating rating) {
 
         Campaign campaign = campaignRepository.findCampaignById(campaignId);

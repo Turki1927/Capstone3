@@ -43,7 +43,6 @@ public class Campaign {
     @Column(columnDefinition = "varchar(10) not null")
     private String supervisorPhone;
 
-    //هنا عدلت عشان وقت انشاء الحمله تكون null
     @Column(nullable = false)
     private Boolean registrationOpen = true;   // true = accepting pilgrims, false = closed
 

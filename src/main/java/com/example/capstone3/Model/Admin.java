@@ -28,7 +28,8 @@ public class Admin {
     @Column(columnDefinition = "varchar(10) not null")
     private String password;
 
-
+    @NotEmpty(message = "The chat id is required")
+    private String chatId;
 
 }
 

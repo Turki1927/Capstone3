@@ -47,49 +47,6 @@ public class PilgrimService {
     }
 
 
-//1
-    public void assignPilgrimToCampaign(Integer pilgrimId, Integer campaignId){
-        Pilgrim pilgrim = pilgrimRepository.findPilgrimById(pilgrimId);
-        Campaign campaign = campaignRepository.findCampaignById(campaignId);
-
-        if (pilgrim == null || campaign == null){
-            throw new ApiException("The pilgrim id or campaign id is not exists");
-        }
-
-        if (pilgrim.getCampaign() != null){
-            throw new ApiException("This pilgrim already assigned to campaign");
-        }
-        if (!campaign.getRegistrationOpen()){
-            throw new ApiException("The campaign is closed");
-        }
-
-        pilgrim.setCampaign(campaign);
-        pilgrimRepository.save(pilgrim);
-    }
-//2
-    public void transferPilgrim(Integer pilgrimId, Integer newCampaignId){
-        Pilgrim pilgrim = pilgrimRepository.findPilgrimById(pilgrimId);
-        Campaign newCampaign = campaignRepository.findCampaignById(newCampaignId);
-
-        if (pilgrim == null || newCampaign == null){
-            throw new ApiException("The pilgrim id or campaign id is not exists");
-        }
-
-        if (pilgrim.getCampaign() == null){
-            throw new ApiException("This pilgrim does not belong to any campaign");
-        }
-
-        if (pilgrim.getCampaign().getId().equals(newCampaignId)){
-            throw new ApiException("The pilgrim already in the same campaign");
-        }
-        if (!newCampaign.getRegistrationOpen()){
-            throw new ApiException("The campaign is closed");
-        }
-
-        pilgrim.setCampaign(newCampaign);
-        pilgrimRepository.save(pilgrim);
-    }
-//3
     public HealthRecord getHealthRecord(Integer pilgrimId){
         Pilgrim pilgrim = pilgrimRepository.findPilgrimById(pilgrimId);
         if (pilgrim == null){

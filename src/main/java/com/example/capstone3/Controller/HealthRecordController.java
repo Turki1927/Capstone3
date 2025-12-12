@@ -1,5 +1,6 @@
 package com.example.capstone3.Controller;
 
+import com.example.capstone3.Api.ApiResponse;
 import com.example.capstone3.DTO_in.CheckMealAllowedDTO;
 import com.example.capstone3.DTO_in.HealthRecordDTO;
 import com.example.capstone3.DTO_out.HealthRiskResponseDTO;
@@ -35,24 +36,23 @@ public class HealthRecordController {
     @PostMapping("/add")
     public ResponseEntity<?> addHealthRecord(@RequestBody @Valid HealthRecordDTO healthRecordDTO) {
         healthRecordService.addHealthRecord(healthRecordDTO);
-        return ResponseEntity.status(200).body("Health record added successfully");
+        return ResponseEntity.status(200).body(new ApiResponse("Health record added successfully"));
     }
 
     @PutMapping("/update/{id}")
     public ResponseEntity<?> updateHealthRecord(@PathVariable Integer id,
                                              @RequestBody HealthRecordDTO healthRecordDTO) {
         healthRecordService.updateHealthRecord(id, healthRecordDTO);
-        return ResponseEntity.status(200).body("Health record updated successfully");
+        return ResponseEntity.status(200).body(new ApiResponse("Health record updated successfully"));
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteHealthRecord(@PathVariable Integer id) {
         healthRecordService.deleteHealthRecord(id);
-        return ResponseEntity.status(200).body("Health record deleted successfully");
+        return ResponseEntity.status(200).body(new ApiResponse("Health record deleted successfully"));
     }
 
 
-//7
 
     @PostMapping("/check-meal-allowed")
     public ResponseEntity<?> checkMealAllowed(@RequestBody CheckMealAllowedDTO dto) {
@@ -63,7 +63,7 @@ public class HealthRecordController {
     }
 
 
-//8
+
     @GetMapping("/classify-risk/{pilgrimId}")
     public ResponseEntity<?> classifyRisk(@PathVariable Integer pilgrimId) {
 

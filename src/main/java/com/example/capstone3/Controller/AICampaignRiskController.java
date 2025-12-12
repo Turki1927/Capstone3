@@ -1,6 +1,5 @@
 package com.example.capstone3.Controller;
 
-import com.example.capstone3.Service.AICampaignHealthRiskService;
 import com.example.capstone3.Service.AICampaignRiskService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -12,10 +11,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/v1/ai/campaign")
 @RequiredArgsConstructor
-private final AICampaignRiskService riskService;
+public class AICampaignRiskController {
 
-@GetMapping("/risk/{campaignId}")
-public ResponseEntity<?> getRisk(@PathVariable Integer campaignId) {
-    return ResponseEntity.ok(riskService.getCampaignRisk(campaignId));
-}
+    private final AICampaignRiskService riskService;
+
+    @GetMapping("/risk/{campaignId}")
+    public ResponseEntity<?> getRisk(@PathVariable Integer campaignId) {
+        return ResponseEntity.ok(riskService.getCampaignRisk(campaignId));
+    }
 }

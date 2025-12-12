@@ -45,7 +45,6 @@ public class ObjectionController {
         objectionService.deleteObjection(objectionId);
         return ResponseEntity.status(200).body(new ApiResponse("Objection deleted successfully"));
     }
-//12
     @PutMapping("/approve/{objectionId}")
     public ResponseEntity<?> approveObjection(@PathVariable Integer objectionId,
                                               @RequestBody Objection objection) {
@@ -53,7 +52,6 @@ public class ObjectionController {
         return ResponseEntity.status(200).body(new ApiResponse("Objection approved successfully"));
     }
 
-//13
     @PutMapping("/reject/{objectionId}")
     public ResponseEntity<?> rejectObjection(@PathVariable Integer objectionId,
                                              @RequestBody Objection objection) {

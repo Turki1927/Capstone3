@@ -42,7 +42,6 @@ public class RatingController {
         return ResponseEntity.status(200).body(new ApiResponse("Rating deleted successfully"));
     }
 
-//17
     @GetMapping("/get-rating-by-kitchenId/{kitchenId}")
     public ResponseEntity<?> getRatingByKitchen (@PathVariable Integer kitchenId) {
         return ResponseEntity.status(200).body(ratingService.getRatingByKitchen(kitchenId));

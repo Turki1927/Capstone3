@@ -81,7 +81,6 @@ public class HealthRecordService {
         healthRecordRepository.save(oldRecord);
     }
 
-    // Delete health record by id
     public void deleteHealthRecord(Integer id) {
 
         HealthRecord record = healthRecordRepository.findHealthRecordById(id);
@@ -97,7 +96,6 @@ public class HealthRecordService {
 
 
 
-//4 by turki
     public MealValidationResponseDTO checkMealAllowed(CheckMealAllowedDTO dto) {
 
         //  Get pilgrim
@@ -141,7 +139,6 @@ public class HealthRecordService {
     }
 
 
-    //5 by turki
 
     public HealthRiskResponseDTO classifyHealthRisk(Integer pilgrimId) {
 

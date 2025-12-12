@@ -26,19 +26,19 @@ public class AdminController {
     @PostMapping("/add")
     public ResponseEntity<?> addAdmin(@RequestBody Admin admin) {
         adminService.addAdmin(admin);
-        return ResponseEntity.status(200).body("Admin added successfully");
+        return ResponseEntity.status(200).body(new ApiResponse("Admin added successfully"));
     }
 
     @PutMapping("/update/{id}")
     public ResponseEntity<?> updateAdmin(@RequestBody Admin admin, @PathVariable Integer id) {
         adminService.updateAdmin(admin, id);
-        return ResponseEntity.status(200).body("Admin updated successfully");
+        return ResponseEntity.status(200).body(new ApiResponse("Admin updated successfully"));
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteAdmin(@PathVariable Integer id) {
         adminService.deleteAdmin(id);
-        return ResponseEntity.status(200).body("Admin deleted successfully");
+        return ResponseEntity.status(200).body(new ApiResponse("Admin deleted successfully"));
     }
 
     //  Activate kitchen 1
@@ -52,7 +52,7 @@ public class AdminController {
     @PutMapping("/suspend-kitchen/{id}")
     public ResponseEntity<?> suspendKitchen(@PathVariable Integer id) {
         adminService.suspendKitchen(id);
-        return ResponseEntity.status(200).body("Kitchen suspended successfully");
+        return ResponseEntity.status(200).body(new ApiResponse("Kitchen suspended successfully"));
     }
 
 //3
@@ -72,6 +72,9 @@ public class AdminController {
 
 
 
-
+    @GetMapping("/chat-ids")
+    public List<String> getChatIds() {
+        return adminService.getAllChatIds();
+    }
 
 }

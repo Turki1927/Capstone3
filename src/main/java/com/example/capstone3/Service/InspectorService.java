@@ -47,7 +47,6 @@ public class InspectorService {
         }
         inspectorRepository.delete(inspector);
     }
-//7
     public Set<Violation> getViolationsByInspector(Integer inspectorId) {
         Inspector inspector = inspectorRepository.findInspectorById(inspectorId);
         if (inspector == null) {
@@ -56,7 +55,6 @@ public class InspectorService {
 
         return inspector.getViolations();
     }
-//8
     public Set<Violation> getOpenViolationsByInspector(Integer inspectorId) {
         Inspector inspector = inspectorRepository.findInspectorById(inspectorId);
         if (inspector == null) {
