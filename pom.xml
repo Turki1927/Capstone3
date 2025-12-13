@@ -6,7 +6,6 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <!-- ✅ نفس إصدار Spring Boot المطلوب -->
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
@@ -14,7 +13,6 @@
         <relativePath/>
     </parent>
 
-    <!-- ✅ بيانات مشروعك -->
     <groupId>com.example</groupId>
     <artifactId>Capstone3</artifactId>
     <version>0.0.1-SNAPSHOT</version>
@@ -25,7 +23,6 @@
         <java.version>17</java.version>
     </properties>
 
-    <!-- ✅ Dependencies مطابقة للملف المرجعي -->
     <dependencies>
 
         <!-- Web -->
@@ -85,7 +82,6 @@
 
     </dependencies>
 
-    <!-- ✅ Build Config مطابق -->
     <build>
         <plugins>
 
