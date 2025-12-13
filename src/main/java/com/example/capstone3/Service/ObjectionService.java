@@ -1,6 +1,7 @@
 package com.example.capstone3.Service;
 
 import com.example.capstone3.Api.ApiException;
+import com.example.capstone3.DTO_in.ObjectionDecisionDTO;
 import com.example.capstone3.Model.Kitchen;
 import com.example.capstone3.DTO_in.AddObjectionDTO;
 import com.example.capstone3.DTO_out.ObjectionReportDTO;
@@ -78,32 +79,48 @@ public class ObjectionService {
         objectionRepository.delete(objection);
     }
 
-    public void approveObjection(Integer id, String response) {
-        Objection objection = objectionRepository.findObjectionById(id);
+    public void approveObjection(Integer objectionId, ObjectionDecisionDTO dto) {
+
+        Objection objection = objectionRepository.findObjectionById(objectionId);
         if (objection == null) {
-            throw new ApiException("Objection id not found");
+            throw new ApiException("Objection not found");
+        }
+
+        if (!objection.getStatus().equals("OPEN")) {
+            throw new ApiException("Objection already processed");
         }
 
         objection.setStatus("APPROVED");
-        if (response != null && !response.isEmpty()) {
-            objection.setResponse(response);
+
+        if (dto.getResponse() != null && !dto.getResponse().isBlank()) {
+            objection.setResponse(dto.getResponse());
         }
 
         objectionRepository.save(objection);
     }
 
-    public void rejectObjection(Integer id, String response) {
-        Objection objection = objectionRepository.findObjectionById(id);
+
+    public void rejectObjection(Integer objectionId, ObjectionDecisionDTO dto) {
+
+        Objection objection = objectionRepository.findObjectionById(objectionId);
         if (objection == null) {
-            throw new ApiException("Objection id not found");
+            throw new ApiException("Objection not found");
+        }
+
+        if (!objection.getStatus().equals("OPEN")) {
+            throw new ApiException("Objection already processed");
         }
 
         objection.setStatus("REJECTED");
-        if (response != null && !response.isEmpty()) {
-            objection.setResponse(response);
+
+        if (dto.getResponse() != null && !dto.getResponse().isBlank()) {
+            objection.setResponse(dto.getResponse());
         }
+
         objectionRepository.save(objection);
     }
+
+
 
 
     public ObjectionReportDTO getObjectionApprovalReport() {

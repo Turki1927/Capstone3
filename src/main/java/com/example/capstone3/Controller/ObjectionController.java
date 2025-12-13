@@ -2,6 +2,7 @@ package com.example.capstone3.Controller;
 
 import com.example.capstone3.Api.ApiResponse;
 import com.example.capstone3.DTO_in.AddObjectionDTO;
+import com.example.capstone3.DTO_in.ObjectionDecisionDTO;
 import com.example.capstone3.DTO_out.ObjectionReportDTO;
 import com.example.capstone3.Model.Objection;
 import com.example.capstone3.Service.ObjectionService;
@@ -45,22 +46,19 @@ public class ObjectionController {
         objectionService.deleteObjection(objectionId);
         return ResponseEntity.status(200).body(new ApiResponse("Objection deleted successfully"));
     }
-    @PutMapping("/approve/{objectionId}")
-    public ResponseEntity<?> approveObjection(@PathVariable Integer objectionId,
-                                              @RequestBody Objection objection) {
-        objectionService.approveObjection(objectionId, objection.getResponse());
-        return ResponseEntity.status(200).body(new ApiResponse("Objection approved successfully"));
+    @PutMapping("/approve/{id}")
+    public ResponseEntity<?> approveObjection(@PathVariable Integer id, @RequestBody @Valid ObjectionDecisionDTO dto) {
+
+        objectionService.approveObjection(id, dto);
+        return ResponseEntity.status(200).body(new ApiResponse("Objection approved and violation removed"));
     }
 
-    @PutMapping("/reject/{objectionId}")
-    public ResponseEntity<?> rejectObjection(@PathVariable Integer objectionId,
-                                             @RequestBody Objection objection) {
-        objectionService.rejectObjection(objectionId, objection.getResponse());
-        return ResponseEntity.status(200).body(new ApiResponse("Objection rejected successfully"));
+    @PutMapping("/reject/{id}")
+    public ResponseEntity<?> rejectObjection(@PathVariable Integer id, @RequestBody @Valid ObjectionDecisionDTO dto) {
+
+        objectionService.rejectObjection(id, dto);
+        return ResponseEntity.status(200).body(new ApiResponse("Objection rejected"));
     }
-
-
-
 
     @GetMapping("/approval-report")
     public ResponseEntity getApprovalReport() {
