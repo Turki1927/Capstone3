@@ -15,7 +15,7 @@
     </ul>
   </li>
 
-  <li>Designing the complete Database Diagram and defining entity relationships</li>
+  <li>Designing the complete Database Diagram</li>
 
   <li>Implemented full business logic for violations and objections, including:
     <ul>
